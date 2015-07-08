@@ -65,6 +65,12 @@ app.get('/api/achievements', function (request, response) {
     response.send(achievements);
 });
 
+app.post('/api/achievements', function(request, response){
+    achievements.push(request.body);
+    console.log(request.body);
+    response.send(achievements);
+});
+
 app.listen(8000, function () {
     console.log('Express server started!!!');
 });

@@ -166,7 +166,8 @@ declare module "angular2/router" {
     renavigate(): Promise<any>;
     generate(name: string, params: any): string;
     subscribe(onNext: Function): void;
-    registerOutlet(outlet: any, name: any)
+    registerOutlet(outlet: any, name: any);
+    parent: Router;
   }
   var RouterOutlet: any;
   var RouterLink: any;
@@ -429,4 +430,18 @@ declare module "angular2/http" {
   class ResponseTypes { }
 
   export class httpInjectables { }
+}
+
+declare module 'angular2/forms'{
+  import ng2Core = require('angular2/angular2');
+  
+  var formInjectables : List<Type>;
+  var formDirectives : List<Type>;
+  
+  export class FormBuilder extends ng2Core.FormBuilder {}
+  //export class FormDirectives {}
+  export class Validators extends ng2Core.Validators {
+    required: any;
+  }
+  export class ControlGroup extends ng2Core.ControlGroup {}
 }

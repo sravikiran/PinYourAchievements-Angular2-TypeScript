@@ -1,11 +1,11 @@
 import {Component, View} from 'angular2/angular2';
 import {Router, RouteConfig, RouterLink, RouterOutlet} from 'angular2/router';
-import { Inject} from 'angular2/di';
+import {Inject} from 'angular2/di';
 
-import { _settings } from '../../settings'
-import {Sidebar} from '../sidebar/sidebar'
-import {Home} from '../home/home'
-import {About} from '../about/about'
+import { _settings } from '../../settings';
+import {Sidebar} from '../sidebar/sidebar';
+import {Home} from '../home/home';
+import {About} from '../about/about';
 
 @Component({
   selector: 'my-app'
@@ -33,5 +33,4 @@ export class MyApp {
       { path: '/about', as: 'about', component: About }
     ]);
   }
-}    
-
+}
