@@ -6,6 +6,7 @@ var app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text({type: 'text/plain'}));
 
 app.use(express.static('public'));
 app.use(require('connect-livereload')());
@@ -17,6 +18,7 @@ app.get('/', function (request, response) {
 app.get('/api/sample', function (request, response) {
     response.send({ name: "Ravi" });
 });
+
 var achievements = [
     {
         title: 'Received Microsoft MVP Award',
@@ -66,8 +68,8 @@ app.get('/api/achievements', function (request, response) {
 });
 
 app.post('/api/achievements', function(request, response){
-    achievements.push(request.body);
-    console.log(request.body);
+    achievements.push(JSON.parse(request.body));
+    console.log(JSON.parse(request.body));
     response.send(achievements);
 });
 
