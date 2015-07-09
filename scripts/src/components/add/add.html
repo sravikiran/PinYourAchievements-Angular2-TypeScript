@@ -1,0 +1,21 @@
+<div>Add New Achievement</div>
+<br />
+<form (ng-submit)="print()" [ng-form-model]="addAchievementForm">
+	<div class="input-group">
+		<span>Title</span>
+		<input type="text" id="title" ng-control="title" class="form-control" />
+	</div>
+	<div class="input-group">
+		<span>Type</span>
+		<input type="text" id="type" ng-control="type" class="form-control" />
+	</div>
+	<div class="input-group">
+		<span>From</span>
+		<input type="text" id="from" ng-control="from" class="form-control" />
+	</div>
+	<div>&nbsp;</div>
+	<div class="input-group">
+		<input type="submit" value="click" class="btn btn-primary" />
+		<input type="reset" value="Reset" class="btn" >
+	</div>
+</form>

@@ -35,8 +35,8 @@ gulp.task(tasks.default, function () {
 		tasks.html,
 		tasks.copy,
 		tasks.cleanSrc,
-		//tasks.startWebServer,
-		//tasks.openBrowser,
+		tasks.startWebServer,
+		tasks.openBrowser,
 		tasks.watch);
 });
 

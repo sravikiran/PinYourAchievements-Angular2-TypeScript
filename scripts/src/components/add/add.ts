@@ -6,20 +6,20 @@ import {Router} from 'angular2/router';
 import {DummyService} from '../../services/dummyService';
 
 @Component({
-  selector: 'about',
+  selector: 'add',
   injectables: [FormBuilder]
 })
 @View({
-	templateUrl: _settings.buildPath + '/components/about/about.html',
+	templateUrl: _settings.buildPath + '/components/add/add.html',
   directives:[formDirectives]
 })
-export class About {
+export class Add {
   addAchievementForm: any;
   
   constructor(@Inject(FormBuilder) private formBuilder: FormBuilder, 
               @Inject(Router) private router: Router,
               @Inject(DummyService) private dummyService: DummyService) {
-	  //var fb = new FormBuilder();
+
 	  this.addAchievementForm = formBuilder.group({
       title: [''],
       type: [''],

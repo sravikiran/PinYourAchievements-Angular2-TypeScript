@@ -6,15 +6,45 @@ TypeScript is the typed super set of JavaScript. The language is built and maint
 
 In this article, we will see how to use Angular 2 and TypeScript to build a simple application. As Angular 2 is still in alpha, syntax of the code snippets shown in this article may change before it reaches RTM.
 
-Setting Up
-----
-Angular 2 is still in alpha at the time of writing this article. So, the framework and the resources around it are still pretty raw. They will go through a number of changes and will get better by the time it is ready for production.
-
-There are a number of seed projects to get started with Angular 2 and TypeScript. I found <a href="https://github.com/EladRK/angular-starter" target="_blank"> Elad Katz's seed project</a> to be a very good starting point. I found a few areas where the seed project could be cleaned up, so I forked it and applied the required <a href="https://github.com/sravikiran/angular-starter" target="_blank">changes on my fork</a>. The sample of this article is based on my fork of the repository. If you want to follow along this tutorial, first clone it and follow the instructions mentioned in the readme file to run the seed project.
-
 Basics of Angular 2
 -----
 As already mentioned, Angular 2 was built with simplicity in mind. So, the team removed a number of recipes of Angular 1 that brought the question "Why are we doing this?" in our minds. Watch <a href="https://www.youtube.com/watch?v=gNmWybAyBHI" target="_blank">Angular 2.0 Core session by Igor and Tobias</a> to know what all are removed from Angular 1. Now the framework is comprised of a small set of building blocks and some conventions to be followed. Following are the building blocks in Angular 2:
 
- -  Components: A component is similar to directive in Angular 1. It is built with features of HTML5 Web Components. Every component has a view and a piece of logic. It can interact with services to achieve its functionality. The services can be Dependency Injected into the component. Anything that has to be used in view of the component has to be a public member on the instance of the component.
- - Services: A service is a simple ES6 class with some annotations for Dependency Injection.
+ -  Components: A component is similar to directive in Angular 1. It is built with features of HTML5 Web Components. Every component has a view and a piece of logic. It can interact with services to achieve its functionality. The services can be Dependency Injected into the component. Anything that has to be used in view of the component has to be a public member on the instance of the component. The components use property binding to check for changes in the values and act on the changes. The components can handle events and event handlers are the public methods defined in the component's class.
+ -  Services: A service is a simple ES6 class with some annotations for Dependency Injection.
+
+As in Angular 1.x, Angular 2 uses Dependency Injection to get references of the objects. As scope is removed from the framework, we don't have digest cycle running and hence we don't need to keep calling `scope.$apply` while working in non-Angular world. Angular 2 uses Zones to kick the changes and zones know when to act.
+
+An Angular 2 application starts with a component and rest of the application is divided into components and they are loaded inside the root component. The components 
+
+Check Victor Savkin's blog post on <a href="http://victorsavkin.com/post/118372404541/the-core-concepts-of-angular-2" target="_blank">Core Concepts in Angular 2</a> to learn more about the basics of Angular 2.
+
+Setting Up
+----
+Angular 2 is still in alpha at the time of writing this article. So, the framework and the resources around it are still pretty raw. They will go through a number of changes and will get better by the time it is ready for production.
+
+There are a number of seed projects to get started with Angular 2 and TypeScript. I found <a href="https://github.com/EladRK/angular-starter" target="_blank"> Elad Katz's seed project</a> to be a very good starting point. If you want to follow along with this tutorial, clone this repository and follow the instructions mentioned in the readme file to install and run the seed project. The seed project contains the following:
+ 
+ -  A basic Angular 2 application using TypeScript
+ -  Uses JSPM/SystemJS to load dependencies on the pages
+ -  An express REST API to consume in Angular
+ -  Gulp to transpile TypeScript code to ES5 and start Node.js server
+
+Building Pin Your Achievements Application
+-------
+Now that we have some idea on what Angular 2 is and you cloned the seed project, let's modify the seed project and build a simple application to pin your achievements on a board. As first thing, let's add Express APIs to get and add achievements. As I forked the repo and modified the seed project to add basic express APIs, you will see and endpoint serving the existing list of achievements. We need to add an endpoint to post a new achevement. Open the server.js file and add the following snippet to it:
+
+[js]
+app.post('/api/achievements', function(request, response){
+    achievements.push(JSON.parse(request.body));
+    response.send(achievements);
+});
+[/js]
+
+As Angular 2 is still pretty raw, its `Http` API is not matured enough yet. So, I couldn't figure a way to post JSON data using the service. This will change in the future releases of the framework. The data gets posted in the form of plain text. So, let's add a `bodyParser` middleware to read text from the request body.
+
+[js]
+app.use(bodyParser.text({type: 'text/plain'}));
+[/js]
+
+Take a few minutes and explore the seed project. 

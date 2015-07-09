@@ -69,7 +69,6 @@ app.get('/api/achievements', function (request, response) {
 
 app.post('/api/achievements', function(request, response){
     achievements.push(JSON.parse(request.body));
-    console.log(JSON.parse(request.body));
     response.send(achievements);
 });
 

@@ -5,7 +5,7 @@ import {Inject} from 'angular2/di';
 import { _settings } from '../../settings';
 import {Sidebar} from '../sidebar/sidebar';
 import {Home} from '../home/home';
-import {About} from '../about/about';
+import {Add} from '../add/add';
 
 @Component({
   selector: 'my-app'
@@ -30,7 +30,7 @@ export class MyApp {
     // simply inject router and configure from within a constructor or helper function 
     router.config([
       { path: '', as: 'home', component: Home },
-      { path: '/about', as: 'about', component: About }
+      { path: '/add', as: 'add', component: Add }
     ]);
   }
 }
