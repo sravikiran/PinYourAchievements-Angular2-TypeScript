@@ -2,7 +2,7 @@ import {Component, View} from 'angular2/angular2';
 import { Inject} from 'angular2/di';
 import {Http} from 'angular2/http';
 
-export class DummyService
+export class AchievementsService
 {
 	myData : Array<string>;
 	serverData: any;

@@ -3,7 +3,7 @@ import { _settings } from '../../settings'
 import {FormBuilder, Validators, formDirectives, ControlGroup} from 'angular2/forms';
 import {Inject} from 'angular2/di';
 import {Router} from 'angular2/router';
-import {DummyService} from '../../services/dummyService';
+import {AchievementsService} from '../../services/achievementsService';
 
 @Component({
   selector: 'add',
@@ -18,7 +18,7 @@ export class Add {
   
   constructor(@Inject(FormBuilder) private formBuilder: FormBuilder, 
               @Inject(Router) private router: Router,
-              @Inject(DummyService) private dummyService: DummyService) {
+              @Inject(AchievementsService) private achievementsService: AchievementsService) {
 
 	  this.addAchievementForm = formBuilder.group({
       title: [''],
@@ -27,9 +27,9 @@ export class Add {
     });
   }
   
-  print(){
+  addAchievement(){
     console.log(this.addAchievementForm.value);
-    this.dummyService.addAnAchievement(this.addAchievementForm.value)
+    this.achievementsService.addAnAchievement(this.addAchievementForm.value)
                      .map(r => r.json())
                      .subscribe(result => {
                        this.router.parent.navigate('/');
