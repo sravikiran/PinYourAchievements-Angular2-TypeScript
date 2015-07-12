@@ -12,11 +12,9 @@ import {Inject} from 'angular2/di';
   directives: [NgFor]
 })
 export class Home {
-  myStrings: Array<string>;
-  value: string;
   achievements: Array<any>;
 
-  constructor( @Inject(AchievementsService) private achievementsService: AchievementsService) {
+  constructor(@Inject(AchievementsService) private achievementsService: AchievementsService) {
     achievementsService.getAllAchievements()
       .map(r => r.json())
       .subscribe(a => {
