@@ -1,13 +1,13 @@
-import {Component, View} from 'angular2/angular2';
-import { Inject} from 'angular2/di';
-import {Http} from 'angular2/http';
+import { Injectable } from '@angular/core';
+import {Http} from '@angular/http';
 
+@Injectable()
 export class AchievementsService {
-	constructor( @Inject(Http) private http: Http) {		
+	constructor(private http: Http) {		
 	}
 
 	getAchievementsOfType(type: string) : any {
-		var path = '/api/achievements/' + type;
+		var path = `/api/achievements/${type}`;
 		return this.http.get(path);
 	}
 
